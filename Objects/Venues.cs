@@ -56,5 +56,19 @@ namespace BandTracker
       return allVenues;
     }
 
+    public override bool Equals (System.Object otherVenues)
+    {
+      if (otherVenues is Venues)
+      {
+        Venues newVenues = (Venues) otherVenues;
+        bool idEquality = (this.GetId() ==  newVenues.GetId());
+        bool venueEquality = (this.GetVenue() == newVenues.GetVenue());
+        return (idEquality && venueEquality);
+      }
+      else
+      {
+        return false;
+      }
+    }
   }
 }
