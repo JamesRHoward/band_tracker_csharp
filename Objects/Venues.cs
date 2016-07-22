@@ -7,17 +7,17 @@ namespace BandTracker
   public class Venues
   {
     private int _id;
-    private string _name;
+    private string _venue;
 
-    public Venues(string name, int id = 0)
+    public Venues(string venueName, int id = 0)
     {
       _id = id;
-      _name = name;
+      _venue = venueName;
     }
 
-    public void SetName(string newName)
+    public void SetVenueName(string newVenueName)
     {
-      _name = newName;
+      _venue = newVenueName;
     }
 
     public int GetId()
@@ -25,11 +25,10 @@ namespace BandTracker
       return _id;
     }
 
-    public string GetName()
+    public string GetVenue()
     {
-      return _name;
+      return _venue;
     }
-
 
     public static List<Venues> GetAll()
     {
@@ -43,21 +42,19 @@ namespace BandTracker
       {
         int venuesId = rdr.GetInt32(0);
         string venuesName = rdr.GetString(1);
-        Venues newVenues = new Venues(venuesName, venuesId);
+        Venues newVenue = new Venues(venuesName, venuesId);
         allVenues.Add(newVenue);
-        {
-          if (rdr != null)
-          {
-            rdr.Close();
-          }
-          if (conn != null)
-          {
-           conn.Close();
-          }
-          return allVenues;
-        }
       }
-
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allVenues;
     }
+
   }
 }
