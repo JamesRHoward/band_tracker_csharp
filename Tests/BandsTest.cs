@@ -35,6 +35,18 @@ namespace BandTracker
 
       Assert.Equal(1, Bands.GetAll().Count);
     }
+    [Fact]
+    public void Test_Find_FindsBandsId()
+    {
+      Bands testBand = new Bands("KISS");
+      testBand.Save();
+      Bands testBand2 = new Bands("AC/DC");
+      testBand2.Save();
+      int idToFind = testBand2.GetId();
+      Bands resultBand = Bands.Find(idToFind);
+
+      Assert.Equal(testBand2, resultBand);
+    }
     public void Dispose()
     {
       Bands.DeleteAll();
