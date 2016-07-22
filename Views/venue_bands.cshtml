@@ -1,0 +1,21 @@
+<h1>List of Bands That have played at @Model["venue"].GetVenue()</h1>
+@if (Model["bands"].Count == 0)
+{
+  <p>No bands have played here yet.</p>
+}
+else
+{
+  <ul>
+    @foreach(var band in Model["bands"])
+    {
+      <li>@bands.GetBand()</li>
+    }
+  </ul>
+}
+<h3>Add new band to Venue</h3>
+<form action="/band/new" method="post">
+    <label for="band_name">Band Name</label>
+    <input type="text" name="band_name" required>
+    <button type="submit">Submit</button>
+</form>
+<p><a href="/">View all venues</a></p>
