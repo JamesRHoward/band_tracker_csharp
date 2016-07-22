@@ -168,7 +168,7 @@ namespace BandTracker
 
       SqlParameter bandIdParameter = new SqlParameter();
       bandIdParameter.ParameterName = "@BandId";
-      bandIdParameter.Value = this.GetId();
+      bandIdParameter.Value = newBand.GetId();
       cmd.Parameters.Add(venueIdParameter);
       cmd.Parameters.Add(bandIdParameter);
       cmd.ExecuteNonQuery();
@@ -183,7 +183,7 @@ namespace BandTracker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM venues JOIN venues_bands ON (venues.id = venues_bands.venue_id) JOIN bands ON (venues_bands.band_id = bands.id) WHERE venues.id = @VenuesId");
+      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM venues JOIN venues_bands ON (venues.id = venues_bands.venue_id) JOIN bands ON (venues_bands.band_id = bands.id) WHERE venues.id = @VenuesId;", conn);
       SqlParameter venueIdParameter = new SqlParameter();
       venueIdParameter.ParameterName = "@VenuesId";
       venueIdParameter.Value = this.GetId().ToString();

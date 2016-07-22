@@ -76,6 +76,22 @@ namespace BandTracker
 
       Assert.Equal(newVenueName, result);
     }
+    [Fact]
+    public void Test_GetBands_JoinStatmentAndTableWorked()
+    {
+      Venues firstVenue = new Venues("Red Door");
+      firstVenue.Save();
+      Venues secondVenue = new Venues("Green Room");
+      secondVenue.Save();
+      Bands testBands = new Bands("The Who");
+      testBands.Save();
+      Bands testBands2 = new Bands("Blue oyster cult");
+      testBands2.Save();
+      secondVenue.AddBand(testBands);
+      Console.WriteLine(testBands.GetBand());
+
+      Assert.Equal(1, secondVenue.GetBands().Count);
+    }
     public void Dispose()
     {
       Venues.DeleteAll();
