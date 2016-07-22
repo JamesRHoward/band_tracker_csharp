@@ -4,31 +4,36 @@ using System.Data.SqlClient;
 
 namespace BandTracker
 {
-  public class Venue
+  public class Venues
   {
     private int _id;
-    private string _venueName;
+    private string _name;
 
-    public Venue(string venueName, int id = 0)
+    public Venues(string name, int id = 0)
     {
       _id = id;
-      _venueName = venueName;
+      _name = name;
     }
+
+    public void SetName(string newName)
+    {
+      _name = newName;
+    }
+
     public int GetId()
     {
       return _id;
     }
-    public string GetVenueName()
+
+    public string GetName()
     {
-      return _venueName;
+      return _name;
     }
-    public void SetVenueName()
+
+
+    public static List<Venues> GetAll()
     {
-      _venueName = venueName;
-    }
-    public static List<Venue> GetAll()
-    {
-      List<Venue> allVenues = new List<Venue>{};
+      List<Venues> allVenues = new List<Venues>{};
       SqlConnection conn = DB.Connection();
       SqlDataReader rdr = null;
       conn.Open();
@@ -36,22 +41,23 @@ namespace BandTracker
       rdr = cmd.ExecuteReader();
       while (rdr.Read())
       {
-        int venueId = rdr.GetInt32(0);
-        string venueName = GetString(1);
-        Venue newVenue = new Venue(venueName, venueId);
+        int venuesId = rdr.GetInt32(0);
+        string venuesName = rdr.GetString(1);
+        Venues newVenues = new Venues(venuesName, venuesId);
         allVenues.Add(newVenue);
         {
-          if(rdr != null)
+          if (rdr != null)
           {
             rdr.Close();
           }
-          if(conn != null)
+          if (conn != null)
           {
-           conn.Close
+           conn.Close();
           }
           return allVenues;
         }
       }
+
     }
   }
 }
