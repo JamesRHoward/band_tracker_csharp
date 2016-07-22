@@ -126,6 +126,37 @@ namespace BandTracker
       return allVenues[0];
     }
 
+    public void Update(string venueName)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET venue = @VenueName OUTPUT INSERTED.venue WHERE id = @VenuesId;", conn);
+      SqlParameter updateVenueParameter = new SqlParameter();
+      updateVenueParameter.ParameterName = "@VenueName";
+      updateVenueParameter.Value = venueName;
+      cmd.Parameters.Add(updateVenueParameter);
+
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenuesId";
+      venueIdParameter.Value = venueName;
+      cmd.Parameters.Add(venueIdParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        this._venue = rdr.GetString(0);
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+    }
+
     public void DeleteThis()
     {
       SqlConnection conn = DB.Connection();
