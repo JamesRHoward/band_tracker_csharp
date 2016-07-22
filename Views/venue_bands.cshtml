@@ -1,4 +1,4 @@
-<h1>List of Bands That have played at @Model["venue"].GetVenue()</h1>
+<h1>List of Bands That have played at @Model["venues"].GetVenue()</h1>
 @if (Model["bands"].Count == 0)
 {
   <p>No bands have played here yet.</p>
@@ -8,7 +8,7 @@ else
   <ul>
     @foreach(var band in Model["bands"])
     {
-      <li>@bands.GetBand()</li>
+      <li>@Model["venues"].GetBands() @Model["venueBands"].GetBands</li>
     }
   </ul>
 }
