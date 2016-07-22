@@ -99,6 +99,7 @@ namespace BandTracker
     public static Venues Find(int queryVenuesId)
     {
       List<Venues> allVenues = new List<Venues>{};
+      SqlConnection conn = DB.Connection();
       SqlDataReader rdr = null;
       conn.Open();
       SqlCommand cmd = new SqlCommand("SELECT * FROM venues WHERE id = @VenueId;", conn);
@@ -109,16 +110,20 @@ namespace BandTracker
       rdr = cmd.ExecuteReader();
       while (rdr.Read())
       {
-        if (rdr != null)
-        {
-          rdr.Close();
-        }
-        if (conn != null)
-        {
-          conn.Close();
-        }
-        return allVenues[0];
+        int id = rdr.GetInt32(0);
+        string venue = rdr.GetString(1);
+        Venues newVenues = new Venues (venue, id);
+        allVenues.Add(newVenues);
       }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allVenues[0];
     }
 
     public static void DeleteAll()

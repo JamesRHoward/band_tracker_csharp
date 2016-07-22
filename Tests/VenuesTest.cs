@@ -35,6 +35,18 @@ namespace BandTracker
 
       Assert.Equal(1, Venues.GetAll().Count);
     }
+    [Fact]
+    public void Test_Find_FindsVenuesId()
+    {
+      Venues testVenue = new Venues("crab shack");
+      testVenue.Save();
+      Venues testVenue2 = new Venues("bobs rock shop");
+      testVenue2.Save();
+      int idToFind = testVenue2.GetId();
+      Venues resultVenue = Venues.Find(idToFind);
+
+      Assert.Equal(testVenue2, resultVenue);
+    }
     public void Dispose()
     {
       Venues.DeleteAll();
