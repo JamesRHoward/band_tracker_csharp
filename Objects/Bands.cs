@@ -71,5 +71,30 @@ namespace BandTracker
       }
     }
 
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("INSERT INTO bands (band) OUTPUT INSERTED.id VALUES (@BandName);", conn);
+      SqlParameter bandParameter = new SqlParameter();
+      bandParameter.ParameterName = "@BandName";
+      bandParameter.Value = this.GetBand();
+      cmd.Parameters.Add(bandParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
   }
 }
