@@ -19,6 +19,14 @@ namespace BandTracker
 
       Assert.Equal(0, result);
     }
+    [Fact]
+    public void Test_BoolOverride_SameEnteriesMatch()
+    {
+      Venues firstVenue = new Venues("Pub house");
+      Venues secondVenue = new Venues("Pub house");
+
+      Assert.Equal(firstVenue, secondVenue);
+    }
     public void Dispose()
     {
       // Venues.DeleteAll();
