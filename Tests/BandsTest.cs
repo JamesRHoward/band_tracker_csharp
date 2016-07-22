@@ -19,6 +19,14 @@ namespace BandTracker
 
       Assert.Equal(0, result);
     }
+    [Fact]
+    public void Test_BoolOverride_SameEnteriesMatch()
+    {
+      Bands firstBands = new Bands("RR and family band");
+      Bands secondBands = new Bands("RR and family band");
+
+      Assert.Equal(firstBands, secondBands);
+    }
     public void Dispose()
     {
       // Bands.DeleteAll();

@@ -62,7 +62,7 @@ namespace BandTracker
       {
         Bands newBands = (Bands) otherBands;
         bool idEquality = (this.GetId() ==  newBands.GetId());
-        bool bandEquality = (this.GetVenue() == newBands.GetVenue());
+        bool bandEquality = (this.GetBand() == newBands.GetBand());
         return (idEquality && bandEquality);
       }
       else
