@@ -132,15 +132,15 @@ namespace BandTracker
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE venues SET venue = @VenueName OUTPUT INSERTED.venue WHERE id = @VenuesId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET venue = @NewVenueName OUTPUT INSERTED.venue WHERE id = @VenuesId;", conn);
       SqlParameter updateVenueParameter = new SqlParameter();
-      updateVenueParameter.ParameterName = "@VenueName";
+      updateVenueParameter.ParameterName = "@NewVenueName";
       updateVenueParameter.Value = venueName;
       cmd.Parameters.Add(updateVenueParameter);
 
       SqlParameter venueIdParameter = new SqlParameter();
       venueIdParameter.ParameterName = "@VenuesId";
-      venueIdParameter.Value = venueName;
+      venueIdParameter.Value = this.GetId();
       cmd.Parameters.Add(venueIdParameter);
       rdr = cmd.ExecuteReader();
       while (rdr.Read())
