@@ -1,0 +1,20 @@
+<h1>Venues List</h1>
+@if(Model.Count == 0)
+{
+  <p>No venues have been added yet.</p>
+}
+else
+{
+  <ul>
+    @foreach(var venue in Model)
+    {
+      <li><a href="/venue/@venue.GetId()">@venue.GetVenue()</a></li>
+    }
+  </ul>
+}
+<h3>Add Venue</h3>
+<form action="/venue/add" method="post">
+  <label for="venue_name">Venue name</label>
+  <input type="text" name="venue_name" required>
+  <button type="submit">submit</button>
+</form>
