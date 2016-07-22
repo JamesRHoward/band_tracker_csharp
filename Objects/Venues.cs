@@ -26,5 +26,15 @@ namespace BandTracker
     {
       _venueName = venueName;
     }
+    public static List<Venue> GetAll()
+    {
+      List<Venue> allVenues = new List<Venue>{};
+      SqlConnection conn = DB.Connection();
+       SqlDataReader rdr = null;
+       conn.Open();
+       SqlCommand cmd = new SqlCommand("SELECT * FROM venues;", conn);
+       rdr = cmd.ExecuteReader();
+       while (rdr.Read())
+    }
   }
 }
