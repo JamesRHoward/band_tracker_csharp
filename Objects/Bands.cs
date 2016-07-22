@@ -55,5 +55,21 @@ namespace BandTracker
       }
       return allBands;
     }
+
+    public override bool Equals (System.Object otherBands)
+    {
+      if (otherBands is Bands)
+      {
+        Bands newBands = (Bands) otherBands;
+        bool idEquality = (this.GetId() ==  newBands.GetId());
+        bool bandEquality = (this.GetVenue() == newBands.GetVenue());
+        return (idEquality && bandEquality);
+      }
+      else
+      {
+        return false;
+      }
+    }
+
   }
 }
