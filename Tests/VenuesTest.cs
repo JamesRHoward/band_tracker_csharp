@@ -27,6 +27,14 @@ namespace BandTracker
 
       Assert.Equal(firstVenue, secondVenue);
     }
+    [Fact]
+    public void Test_Save_SavesVenuesToDatabase()
+    {
+      Venues testVenue = new Venues("pizza palace");
+      testVenue.Save();
+
+      Assert.Equal(1, Venues.GetAll().Count);
+    }
     public void Dispose()
     {
       // Venues.DeleteAll();
