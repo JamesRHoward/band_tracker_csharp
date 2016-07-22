@@ -27,6 +27,14 @@ namespace BandTracker
 
       Assert.Equal(firstBands, secondBands);
     }
+    [Fact]
+    public void Test_Save_SavesBandsToDatabase()
+    {
+      Bands testBand = new Bands("Joe Bonamassa");
+      testBand.Save();
+
+      Assert.Equal(1, Bands.GetAll().Count);
+    }
     public void Dispose()
     {
       // Bands.DeleteAll();
