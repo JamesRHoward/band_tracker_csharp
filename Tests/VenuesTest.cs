@@ -47,6 +47,21 @@ namespace BandTracker
 
       Assert.Equal(testVenue2, resultVenue);
     }
+    [Fact]
+    public void Test_DeleteThis_RemovesSelectedVenueFromDatabase()
+    {
+      Venues testVenue = new Venues("Rocking ricks");
+      testVenue.Save();
+      Venues testVenue2 = new Venues("Dancing daves");
+      testVenue2.Save();
+      int countAfterSaves = Venues.GetAll().Count;
+      testVenue.DeleteThis();
+      int countAfterDeleteThis = Venues.GetAll().Count;
+      int[] expected = {2, 1};
+      int[] result = {countAfterSaves, countAfterDeleteThis};
+
+      Assert.Equal(expected, result);
+    }
     public void Dispose()
     {
       Venues.DeleteAll();
