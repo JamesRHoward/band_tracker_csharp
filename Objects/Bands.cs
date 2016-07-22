@@ -71,6 +71,37 @@ namespace BandTracker
       }
     }
 
+    public static Bands Find(int queryBandsId)
+    {
+      List<Bands> allBands = new List<Bands>{};
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("SELECT * FROM bands WHERE id = @BandId;", conn);
+      SqlParameter bandParameter = new SqlParameter();
+      bandParameter.ParameterName = "@BandId";
+      bandParameter.Value = queryBandsId;
+      cmd.Parameters.Add(bandParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string band = rdr.GetString(1);
+        Bands newBands = new Bands (band, id);
+        allBands.Add(newBands);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allBands[0];
+    }
+
+
     public void Save()
     {
       SqlConnection conn = DB.Connection();
