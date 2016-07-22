@@ -6,7 +6,7 @@ using Xunit;
 
 namespace BandTracker
 {
-  public class VenueTest : IDisposable
+  public class VenuesTest : IDisposable
   {
     public VenuesTest()
     {
@@ -21,7 +21,7 @@ namespace BandTracker
     }
     public void Dispose()
     {
-      // Venue.DeleteAll();
+      // Venues.DeleteAll();
     }
   }
 }
