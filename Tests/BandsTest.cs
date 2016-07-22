@@ -37,7 +37,7 @@ namespace BandTracker
     }
     public void Dispose()
     {
-      // Bands.DeleteAll();
+      Bands.DeleteAll();
     }
   }
 }
