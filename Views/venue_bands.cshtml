@@ -14,8 +14,10 @@ else
 }
 <h3>Add new band to Venue</h3>
 <select>
-    <!-- <label for="band_name"></label> -->
-    <option value="band_name">@Model["bands"].GetAll</option>
+    @foreach(var band in Model["bands"])
+    {
+      <option value="@Model["bands"].GetAll()">@Model.GetAll()</option>
+    }
     <button type="submit">Submit</button>
 </select>
 <p><a href="/">View all venues</a></p>
