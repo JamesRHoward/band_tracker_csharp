@@ -28,16 +28,15 @@ namespace BandTracker
         model.Add("venueBands", VenueBands);
         model.Add("bands", AllBands);
         return View["venue_bands.cshtml", model];
-      };
-      Get["/band/new"] = _ =>{
+      };Get["/band"]= _ => {
         List<Bands> allBands = Bands.GetAll();
-        return View["venue_bands.cshtml", allBands];
+        return View["index.cshtml", allBands];
       };
-      Post["/band/new"]= _ => {
+      Post["/band/add"] = _ => {
         Bands newBand = new Bands(Request.Form["band_name"]);
         newBand.Save();
         List<Bands> allBands = Bands.GetAll();
-        return View["venue_bands.cshtml", allBands];
+        return View["bands.cshtml", allBands];
       };
     }
   }

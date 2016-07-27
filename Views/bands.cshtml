@@ -1,0 +1,15 @@
+<h1>List of Bands</h1>
+@if(Model.Count == 0)
+{
+  <p>No bands have been added yet.</p>
+}
+else
+{
+  <ul>
+    @foreach(var band in Model)
+    {
+      <li><a href="/band/@band.GetId()">@band.GetBand()</a></li>
+    }
+  </ul>
+}
+<p><a href="/">View all venues</a></p>
