@@ -15,7 +15,7 @@ else
 <h3>Add new band to Venue</h3>
 <select>
     <!-- <label for="band_name"></label> -->
-    <option value="band_name">@Model["bands"]</option>
+    <option value="band_name">@Model["bands"].GetAll</option>
     <button type="submit">Submit</button>
 </select>
 <p><a href="/">View all venues</a></p>
