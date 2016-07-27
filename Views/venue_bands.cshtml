@@ -16,8 +16,8 @@ else
 <select>
     @foreach(var band in Model["bands"])
     {
-      <option value="@Model["bands"].GetAll()">@Model.GetAll()</option>
+      <option value="band_name">@Model["bands"]</option>
     }
-    <button type="submit">Submit</button>
 </select>
+<button type="submit">Submit</button>
 <p><a href="/">View all venues</a></p>
